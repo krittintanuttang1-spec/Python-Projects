@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EXZ HUB - Script Hub</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            red: '#ff0033',
+                            darkRed: '#99001f',
+                            glow: '#ff1a40',
+                            bgDark: '#0a0a0c',
+                            cardBg: 'rgba(18, 18, 24, 0.85)',
+                            inputBg: '#141419',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Prompt', 'sans-serif'],
+                        mono: ['Fira Code', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #08080a;
+            font-family: 'Prompt', sans-serif;
+            color: #ffffff;
+            background-image: 
+                radial-gradient(circle at 50% 0%, rgba(255, 0, 51, 0.15), transparent 40%),
+                radial-gradient(circle at 100% 100%, rgba(153, 0, 31, 0.1), transparent 30%);
+            min-height: 100vh;
+        }
+
+        /* Glassmorphism card effect */
+        .glass-card {
+            background: rgba(18, 18, 24, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 0, 51, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+
+        .glass-card-hover:hover {
+            border-color: rgba(255, 0, 51, 0.5);
+            box-shadow: 0 0 15px rgba(255, 0, 51, 0.25);
+        }
+
+        /* Neon Red Text Glow */
+        .text-glow {
+            text-shadow: 0 0 10px rgba(255, 0, 51, 0.7), 0 0 20px rgba(255, 0, 51, 0.4);
+        }
+
+        /* Red Gradient Button */
+        .btn-gradient-red {
+            background: linear-gradient(135deg, #ff0033 0%, #b30024 100%);
+            box-shadow: 0 4px 15px rgba(255, 0, 51, 0.4);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-gradient-red:hover {
+            background: linear-gradient(135deg, #ff1a40 0%, #d6002b 100%);
+            box-shadow: 0 6px 20px rgba(255, 0, 51, 0.6);
+            transform: translateY(-2px);
+        }
+
+        .btn-gradient-red:active {
+            transform: translateY(0);
+        }
+
+        /* Orange Help Button */
+        .btn-help {
+            background: linear-gradient(135deg, #ff7300 0%, #fe3b00 100%);
+            box-shadow: 0 4px 15px rgba(254, 59, 0, 0.4);
+        }
+        .btn-help:hover {
+            box-shadow: 0 6px 20px rgba(254, 59, 0, 0.6);
+            transform: scale(1.03);
+        }
+
+        /* Notification Toast animation */
+        @keyframes slideUp {
+            from { transform: translateY(100%); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .toast-animate {
+            animation: slideUp 0.3s ease forwards;
+        }
+    </style>
+</head>
+<body class="flex flex-col items-center justify-between pb-24 pt-4 px-4 min-h-screen">
+
+    <div class="w-full max-w-md space-y-5">
+        
+        <!-- Header Section -->
+        <header class="flex items-center justify-center py-3 px-2">
+            <!-- Logo & Brand Name -->
+            <div class="flex items-center space-x-3">
+                <div class="relative w-14 h-14 rounded-full p-[2px] bg-gradient-to-tr from-brand-red to-red-900 shadow-lg shadow-brand-red/50 flex items-center justify-center">
+                    <div class="w-full h-full bg-black rounded-full flex items-center justify-center overflow-hidden">
+                        <img src="https://i.postimg.cc/WDz10NWg/1000030540.png" onerror="this.onerror=null; this.src='https://placehold.co/200x200/ff0033/ffffff?text=EXZ+HUB';" alt="EXZ HUB Logo" class="w-full h-full object-cover">
+                    </div>
+                </div>
+                <h1 class="text-2xl font-extrabold tracking-wider text-white text-glow">EXZ HUB</h1>
+            </div>
+        </header>
+
+        <!-- Main Script Box Card -->
+        <main class="glass-card rounded-2xl p-5 space-y-4 relative overflow-hidden">
+            <!-- Decorative Glow effect -->
+            <div class="absolute -top-10 -right-10 w-24 h-24 bg-brand-red/20 rounded-full blur-xl pointer-events-none"></div>
+
+            <!-- Main Script Title Header -->
+            <div class="flex items-center space-x-2 text-brand-red font-semibold text-lg">
+                <i class="fa-solid fa-code text-xl"></i>
+                <span class="text-white">สคริปต์หลัก <span class="text-brand-red font-bold">(EXZ HUB ALL)</span></span>
+            </div>
+
+            <!-- Code Preview Display Box -->
+            <div class="bg-[#0c0c10] border border-red-900/30 rounded-xl p-4 font-mono text-xs sm:text-sm text-gray-300 overflow-x-auto leading-relaxed shadow-inner">
+                <span class="text-purple-400">loadstring</span>(<span class="text-blue-400">game</span>:<span class="text-yellow-400">HttpGet</span>(<span class="text-green-400">"https://raw.githubusercontent.com/krittintanuttang1-spec/test/refs/heads/main/exzhub"</span>))()
+            </div>
+
+            <!-- Main Copy Button -->
+            <button id="copyBtn" onclick="handleCopyClick()" class="btn-gradient-red w-full py-3.5 rounded-xl font-bold text-white flex items-center justify-center space-x-2 text-base tracking-wide select-none">
+                <i class="fa-regular fa-copy text-lg"></i>
+                <span>คัดลอกสคริปต์ (Click to Copy)</span>
+            </button>
+        </main>
+
+        <!-- Status Legend Card -->
+        <section class="glass-card rounded-xl p-4">
+            <div class="flex flex-wrap gap-y-2.5 gap-x-3 text-xs sm:text-sm text-gray-300 items-center justify-start">
+                <div class="flex items-center space-x-1.5">
+                    <span class="w-3 h-3 rounded-full bg-gray-500 inline-block shadow-sm"></span>
+                    <span>= ปิด</span>
+                </div>
+                <div class="flex items-center space-x-1.5">
+                    <span class="w-3 h-3 rounded-full bg-red-600 inline-block shadow-sm shadow-red-500/50"></span>
+                    <span>= ใช้ไม่ได้</span>
+                </div>
+                <div class="flex items-center space-x-1.5">
+                    <span class="w-3 h-3 rounded-full bg-orange-500 inline-block shadow-sm shadow-orange-500/50"></span>
+                    <span>= กำลังแก้ไข</span>
+                </div>
+                <div class="flex items-center space-x-1.5">
+                    <span class="w-3 h-3 rounded-full bg-yellow-400 inline-block shadow-sm shadow-yellow-400/50"></span>
+                    <span>= มีบัค</span>
+                </div>
+                <div class="flex items-center space-x-1.5">
+                    <span class="w-3 h-3 rounded-full bg-green-500 inline-block shadow-sm shadow-green-500/50"></span>
+                    <span>= ใช้งานได้ปกติ</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Search Bar -->
+        <div class="relative">
+            <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 text-sm"></i>
+            <input 
+                type="text" 
+                id="searchInput" 
+                onkeyup="filterScripts()" 
+                placeholder="ค้นหาแมพหรือประเภทสคริปต์..." 
+                class="w-full bg-[#121218] border border-red-900/30 text-gray-200 placeholder-gray-500 rounded-xl py-3 pl-11 pr-4 focus:outline-none focus:border-brand-red transition-all duration-200 text-sm"
+            >
+        </div>
+
+        <!-- Script List Items -->
+        <section class="space-y-3" id="scriptList">
+            
+            <!-- Item 1: สคริป ล็อกหัว AIMBOT -->
+            <div class="script-item glass-card glass-card-hover rounded-xl p-4 flex items-center justify-between cursor-pointer transition-all duration-200">
+                <span class="font-medium text-gray-200 text-sm sm:text-base">สคริป ล็อกหัว AIMBOT</span>
+                <div class="flex items-center space-x-1">
+                    <span class="w-3.5 h-3.5 rounded-full bg-green-500 shadow-lg shadow-green-500/50"></span>
+                </div>
+            </div>
+
+            <!-- Item 2: สคริป แมพ MM2 (กำลังแก้ไข - สีส้ม) -->
+            <div class="script-item glass-card glass-card-hover rounded-xl p-4 flex items-center justify-between cursor-pointer transition-all duration-200">
+                <span class="font-medium text-gray-200 text-sm sm:text-base">สคริป แมพ MM2</span>
+                <div class="flex items-center space-x-1">
+                    <span class="w-3.5 h-3.5 rounded-full bg-orange-500 shadow-lg shadow-orange-500/50"></span>
+                </div>
+            </div>
+
+            <!-- Item 3: สคริป สวนทุเรียน (ปิด - สีเทา) -->
+            <div class="script-item glass-card glass-card-hover rounded-xl p-4 flex items-center justify-between cursor-pointer transition-all duration-200">
+                <span class="font-medium text-gray-200 text-sm sm:text-base">สคริป สวนทุเรียน</span>
+                <div class="flex items-center space-x-1">
+                    <span class="w-3.5 h-3.5 rounded-full bg-gray-500 shadow-lg shadow-gray-500/50"></span>
+                </div>
+            </div>
+
+        </section>
+
+    </div>
+
+    <!-- Floating Bottom Help Button (Smaller & Compact) -->
+    <button onclick="showHelpModal()" class="fixed bottom-4 right-4 btn-help text-white font-medium text-xs px-3 py-2 rounded-full flex items-center gap-1.5 shadow-lg z-30 transition-all duration-300 opacity-90 hover:opacity-100">
+        <i class="fa-solid fa-circle-question text-sm"></i>
+        <span>เอาสคริปตรงไหน ?</span>
+    </button>
+
+    <!-- Modal Instructions -->
+    <div id="helpModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="glass-card max-w-sm w-full rounded-2xl p-6 text-center space-y-4 border border-brand-red/40">
+            <div class="w-12 h-12 bg-red-900/40 text-brand-red rounded-full flex items-center justify-center mx-auto text-2xl">
+                <i class="fa-solid fa-circle-info"></i>
+            </div>
+            <h3 class="text-xl font-bold text-white">วิธีรับสคริปต์ EXZ HUB</h3>
+            <p class="text-sm text-gray-300 leading-relaxed">
+                1. กดปุ่ม <span class="text-brand-red font-semibold">"คัดลอกสคริปต์"</span> ด้านบน<br>
+                2. นำโค้ดไปวางใน ตัวรันสคริปต์ (Executor) ของคุณ<br>
+                3. กด Execute เพื่อเริ่มใช้งานได้ทันที!
+            </p>
+            <button onclick="closeHelpModal()" class="w-full py-2.5 bg-gray-800 hover:bg-gray-700 text-white rounded-xl font-medium text-sm transition-colors">
+                เข้าใจแล้ว
+            </button>
+        </div>
+    </div>
+
+    <!-- Interactive Script JS Logic -->
+    <script>
+        // Copy Script Function with Mobile Fallback Support
+        function handleCopyClick() {
+            const copyBtn = document.getElementById('copyBtn');
+            const scriptText = 'loadstring(game:HttpGet("https://raw.githubusercontent.com/krittintanuttang1-spec/test/refs/heads/main/exzhub"))()';
+            
+            // Visual Animation effect on click
+            copyBtn.classList.add('scale-95');
+            setTimeout(() => {
+                copyBtn.classList.remove('scale-95');
+            }, 150);
+
+            // Try Modern Clipboard API first, fallback to old execCommand if blocked
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(scriptText).then(() => {
+                    showToast('คัดลอกสำเร็จ!');
+                }).catch(() => {
+                    fallbackCopyText(scriptText);
+                });
+            } else {
+                fallbackCopyText(scriptText);
+            }
+        }
+
+        // Fallback copy method for mobile browsers
+        function fallbackCopyText(text) {
+            const textArea = document.createElement("textarea");
+            textArea.value = text;
+            textArea.style.position = "fixed";
+            textArea.style.top = "0";
+            textArea.style.left = "0";
+            textArea.style.opacity = "0";
+            
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+
+            try {
+                const successful = document.execCommand('copy');
+                if (successful) {
+                    showToast('คัดลอกสำเร็จ!');
+                } else {
+                    showToast('คัดลอกไม่สำเร็จ กรุณาลองใหม่');
+                }
+            } catch (err) {
+                showToast('คัดลอกไม่สำเร็จ กรุณาลองใหม่');
+            }
+
+            document.body.removeChild(textArea);
+        }
+
+        // Custom Toast Notification
+        function showToast(message) {
+            const existingToast = document.getElementById('customToast');
+            if (existingToast) existingToast.remove();
+
+            const toast = document.createElement('div');
+            toast.id = 'customToast';
+            toast.className = 'fixed bottom-20 left-1/2 -translate-x-1/2 bg-red-950 border border-brand-red text-white text-xs sm:text-sm px-4 py-2.5 rounded-xl shadow-xl z-40 toast-animate flex items-center space-x-2';
+            toast.innerHTML = `<i class="fa-solid fa-circle-check text-brand-red"></i> <span>${message}</span>`;
+            
+            document.body.appendChild(toast);
+
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                toast.style.transition = 'opacity 0.3s ease';
+                setTimeout(() => toast.remove(), 300);
+            }, 2500);
+        }
+
+        // Help Modal Controls
+        function showHelpModal() {
+            document.getElementById('helpModal').classList.remove('hidden');
+        }
+
+        function closeHelpModal() {
+            document.getElementById('helpModal').classList.add('hidden');
+        }
+
+        // Search and Filter Functionality
+        function filterScripts() {
+            const input = document.getElementById('searchInput').value.toLowerCase();
+            const items = document.querySelectorAll('.script-item');
+
+            items.forEach(item => {
+                const text = item.textContent.toLowerCase();
+                if (text.includes(input)) {
+                    item.style.display = 'flex';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>
